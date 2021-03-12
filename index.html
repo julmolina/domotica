@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Bootstrap Example</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script>
+            function adiv() {
+            var n1 = parseFloat(document.MyForm.pwd.value);
+            if (n1 == 126){
+                    window.open("newhtml.html");
+                }
+              }
+        </script>
+    </head>
+    <body>
+
+<div class="container">
+  <center>
+    <br>
+  <br>  
+    <h2>AUTENTICAR PARA INGRESAR AL CONTROL DOMÓTICO</h2>
+  <!-- Button to Open the Modal -->
+  <br>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+          ABRIR
+  </button></center>
+  
+
+  <!-- The Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">AUTENTICACIÓN</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+                <div class="container">
+                <h2>Autenticar el ingreso</h2>
+                <p>Se deben ingresar correctamente  el usuario y contraseña :</p>
+                <Form name="MyForm">
+                    <div class="form-group">
+                    <label for="usr">USUARIO:</label>
+                    <input type="text" class="form-control" id="usr" name="username">
+                  </div>
+                  <div class="form-group">
+                    <label for="pwd">CONTRASEÑA:</label>
+                    <input type="password" class="form-control" id="pwd" name="password">
+                  </div>
+                  <button type="submit" class="btn btn-primary" onclick="adiv()">INGRESAR</button>  
+                </Form>
+               </div>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+</div> 
+        
+    </body>
+</html>

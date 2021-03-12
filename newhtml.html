@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Firebase RealTime DataBase</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://gather.at/home/stylesheets/sprite.css" />
+    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+    var config = {
+    apiKey: "AIzaSyAcCXJbsBDXO7-M7hdOHRn1bqIDbMREnJI",
+    authDomain: "ledonoff-1e6a5.firebaseapp.com",
+    databaseURL: "https://ledonoff-1e6a5.firebaseio.com",
+    projectId: "ledonoff-1e6a5",
+    storageBucket: "",
+    messagingSenderId: "874368259989"
+    };
+    firebase.initializeApp(config);
+    </script>
+    </head>
+    <body>
+        <br>
+<br>
+<br>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-success">
+          <div class="panel-heading">Control de encendido o apagado de dispositivos Eléctricos </div>
+          <div class="panel-body">
+             <div class="checkbox">
+               <label>
+                <input type="checkbox" id="checkLed1">LED 1
+              </label>
+               <br>
+              <br>  
+              <center>
+              <button type="button" class="btn btn-primary" onclick="encender()" >ON Led 1</button>
+              <button type="button" class="btn btn-primary" onclick="apagar()" >OFF Led 1</button>    
+              <br>
+              <br>
+              <div class="onoffswitch">
+              <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="checkLedA" checked>
+              <label class="onoffswitch-label" for="checkLedA">
+              <span class="onoffswitch-inner"></span>
+              <span class="onoffswitch-switch"></span>
+              </label>
+              </div>
+              </center>
+              
+              <div class="checkbox">
+               <label>
+                <input type="checkbox" id="checkLed2">LED 2
+              </label>
+              <br>
+              <br>
+              <center>
+               <button type="button" class="btn btn-success" onclick="encender2()">ON Led 2</button>
+              <button type="button" class="btn btn-success" onclick="apagar2()">OFF Led 2</button>   
+               <br>
+              <br>
+              <div class="onoffswitch">
+              <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="checkLedB" checked>
+              <label class="onoffswitch-label" for="checkLedB">
+              <span class="onoffswitch-inner"></span>
+              <span class="onoffswitch-switch"></span>
+              </label>
+              </div>
+              </center>
+                 
+            </div>
+          </div>
+           
+          </div>
+          </div>
+      </div>
+    </div>
+  </div>
+        <a href='index.html'>
+            <img src='volver.png' alt='Volver' title='Volver a página de autenticación' style='display:block; margin:10px auto;width:100px; height:60px'/>
+        </a>
+    </body>
+<script>
+/*
+  Esqueleto de la BD
+  var db = firebase.database().ref('home').set({
+    led1:true,
+    led2:true
+  });
+*/
+var db = firebase.database().ref('home');
+// último estado
+db.on('value', function(data){
+   console.log("data: ", data.val());
+   $("#checkLed1").prop('checked', data.val().led1);
+   $("#checkLed2").prop('checked', data.val().led2);
+});
+$("#checkLed1").click(function(){
+  var estado = $(this).is(':checked');
+  db.update({
+    led1:estado
+  });
+});
+$("#checkLed2").click(function(){
+  var estado = $(this).is(':checked');
+  db.update({
+    led2:estado
+  });
+});
+  </script>
+
+  <script>
+/*
+  Esqueleto de la BD
+  var db = firebase.database().ref('home').set({
+    led1:true,
+    led2:true
+  });
+*/
+var db = firebase.database().ref('home');
+// último estado
+db.on('value', function(data){
+   console.log("data: ", data.val());
+   $("#checkLedA").prop('checked', data.val().led1);
+   $("#checkLedB").prop('checked', data.val().led2);
+});
+$("#checkLedA").click(function(){
+  var estado = $(this).is(':checked');
+  db.update({
+    led1:estado
+  });
+});
+$("#checkLedB").click(function(){
+  var estado = $(this).is(':checked');
+  db.update({
+    led2:estado
+  });
+});
+  </script>  
+  
+  <script>
+            function encender() 
+            {
+            var db = firebase.database().ref('home');
+            db.update({
+                    led1:true
+                  });
+            }
+    </script>
+  <script>
+            function apagar() 
+            {
+            var db = firebase.database().ref('home');
+            db.update({
+                    led1:false
+                  });
+            }
+    </script>
+    <script>
+            function encender2() 
+            {
+            var db = firebase.database().ref('home');
+            db.update({
+                    led2:true
+                  });
+            }
+    </script>
+  <script>
+            function apagar2() 
+            {
+            var db = firebase.database().ref('home');
+            db.update({
+                    led2:false
+                  });
+            }
+    </script>
+</html>
